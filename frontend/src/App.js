@@ -104,18 +104,32 @@ function App() {
     return fileName;
   };
 
-  const getScoreColor = (score) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    if (score >= 40) return 'text-orange-600';
-    return 'text-red-600';
+  const getScoreColor = (score, isDark = false) => {
+    if (isDark) {
+      if (score >= 80) return 'text-green-400';
+      if (score >= 60) return 'text-yellow-400';
+      if (score >= 40) return 'text-orange-400';
+      return 'text-red-400';
+    } else {
+      if (score >= 80) return 'text-green-600';
+      if (score >= 60) return 'text-yellow-600';
+      if (score >= 40) return 'text-orange-600';
+      return 'text-red-600';
+    }
   };
 
-  const getScoreBgColor = (score) => {
-    if (score >= 80) return 'bg-green-100';
-    if (score >= 60) return 'bg-yellow-100';
-    if (score >= 40) return 'bg-orange-100';
-    return 'bg-red-100';
+  const getScoreBgColor = (score, isDark = false) => {
+    if (isDark) {
+      if (score >= 80) return 'bg-green-900/50 border border-green-600';
+      if (score >= 60) return 'bg-yellow-900/50 border border-yellow-600';
+      if (score >= 40) return 'bg-orange-900/50 border border-orange-600';
+      return 'bg-red-900/50 border border-red-600';
+    } else {
+      if (score >= 80) return 'bg-green-100';
+      if (score >= 60) return 'bg-yellow-100';
+      if (score >= 40) return 'bg-orange-100';
+      return 'bg-red-100';
+    }
   };
 
   return (
