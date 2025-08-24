@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -12,6 +12,21 @@ function App() {
   const [analysis, setAnalysis] = useState(null);
   const [error, setError] = useState('');
   const [isDragOver, setIsDragOver] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check for saved theme preference or default to light mode
+    const saved = localStorage.getItem('darkMode');
+    return saved ? JSON.parse(saved) : false;
+  });
+
+  // Update document class and save preference when dark mode changes
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const handleFileSelect = (file) => {
     if (file) {
